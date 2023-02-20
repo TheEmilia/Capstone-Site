@@ -1,0 +1,43 @@
+{% extends "header.html" %} {% block content %}
+<div class="container py-5">
+  <div class="row mb-5">
+    <div class="col-md-8 col-xl-6 text-center mx-auto">
+      <h2 class="fw-bold">Latest Posts</h2>
+      <p class="text-secondary">Find the latest juicy gossip right here!</p>
+      <a
+        class="btn btn-primary text-center border-primary"
+        style="
+          background: var(--bs-primary);
+          color: #ffffff;
+          font-size: 16px;
+          font-weight: bold;
+          margin: 4px;
+        "
+        href="/post"
+        role="button"
+        >New Post</a
+      >
+    </div>
+  </div>
+  <div class="row mx-auto" style="max-width: 900px">
+    <div class="col text-center">
+      {% if latest_post_list %}
+      <ul class="list-unstyled" style="padding: 4px">
+        {% for post in latest_post_list %}
+        <li style="padding: 4px; font-size: 20px">
+          <a
+            href="{% url 'posts:detail' post.id %}"
+            style="text-decoration: none; color: var(--bs-primary)"
+          >
+            {{ post.title }}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <p>It's empty! No posts here D:</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}
